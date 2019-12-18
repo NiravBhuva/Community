@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'activity_screen.dart';
 import 'messages_screen.dart';
+import 'more_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SearchScreen(),
     MessagesScreen(),
     ActivityScreen(),
-    FeedScreen(),
+    MoreScreen(),
   ];
 
   @override

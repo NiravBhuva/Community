@@ -1,21 +1,23 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:community/custom/custom_read_more_text.dart';
-import 'package:community/screens/members_screen.dart';
 import 'package:community/screens/profile_screen.dart';
 import 'package:community/screens/settings_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_button/flutter_reactive_button.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import 'communities_screen.dart';
 import 'feed_screen.dart';
+import 'friends_screen.dart';
 import 'messages_screen.dart';
 
-class CommunitiesScreen extends StatefulWidget {
+class FriendsFollowScreen extends StatefulWidget {
   @override
-  _CommunitiesScreenState createState() => _CommunitiesScreenState();
+  _FriendsFollowScreenState createState() => _FriendsFollowScreenState();
 }
 
-class _CommunitiesScreenState extends State<CommunitiesScreen>
+class _FriendsFollowScreenState extends State<FriendsFollowScreen>
     with SingleTickerProviderStateMixin {
   List<Friends> friends = [];
   TabController tabController;
@@ -68,7 +70,7 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
     'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
   ];
 
-  bool isExpandCoursesMentorship = false;
+  bool isUserFollowed = false;
 
   @override
   void initState() {
@@ -173,14 +175,12 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SettingsScreen()));
+                          _showActionSheet(context);
                         },
-                        child: Image.asset(
-                          'assets/be32af43b3e0b05f702e272d1968a3ed.png',
+                        child: Icon(
+                          Icons.more_vert,
                           color: Colors.white,
-                          height: 25,
-                          width: 25,
+                          size: 30,
                         ),
                       ),
                     ],
@@ -188,194 +188,115 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                 ),
               ],
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Flexible(
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(80)),
-                            border: Border.all(
-                              color: Color(0xff2979FF),
-                              width: 4,
-                            ),
-                          ),
-                          child: Stack(
-                            alignment: Alignment.bottomRight,
-                            children: <Widget>[
-                              CircleAvatar(
-                                radius: 40,
-                                child: ClipOval(
-                                  child: Image.asset(
-                                    'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
-                                    height: 80,
-                                    width: 80,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 25,
-                                width: 25,
-                                transform:
-                                    Matrix4.translationValues(13, -15, 0),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25)),
-                                  color: Color(0xff2979FF).withOpacity(0.7),
-                                ),
-                                child: Icon(
-                                  Icons.photo_camera,
-                                  size: 13,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 25),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Forex warriors',
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                'Business group',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+            Row(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(80)),
+                    border: Border.all(
+                      color: Color(0xff2979FF),
+                      width: 4,
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 40),
-                    child: RaisedButton(
-                      onPressed: () {},
-                      color: Color(0xff3C5A99),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Join',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
+                  transform: Matrix4.translationValues(15, -55, 0),
+                  child: Stack(
+                    alignment: Alignment.bottomRight,
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 40,
+                        child: ClipOval(
+                          child: Image.asset(
+                            'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
+                            height: 80,
+                            width: 80,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Card(
-                  color: Color(0xffF6F6F9),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
-                    width: 80,
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          '739k',
-                          style: TextStyle(
-                            color: Color(0xff5085E8),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      Container(
+                        height: 25,
+                        width: 25,
+                        transform: Matrix4.translationValues(13, -15, 0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(25)),
+                          color: Color(0xff2979FF).withOpacity(0.7),
                         ),
-                        SizedBox(height: 5),
-                        Text(
-                          'Likes',
-                          style: TextStyle(
-                            color: Color(0xff5085E8),
-                            fontWeight: FontWeight.w300,
-                            fontSize: 16,
-                          ),
+                        child: Icon(
+                          Icons.photo_camera,
+                          size: 13,
+                          color: Colors.white,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                Card(
-                  color: Color(0xffF6F6F9),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
-                    width: 80,
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          '254k',
-                          style: TextStyle(
-                            color: Color(0xff5085E8),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
+                Container(
+                  margin: EdgeInsets.only(left: 40, bottom: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Victor Niculici',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
                         ),
-                        SizedBox(height: 5),
-                        Text(
-                          'Members',
-                          style: TextStyle(
-                            color: Color(0xff5085E8),
-                            fontWeight: FontWeight.w300,
-                            fontSize: 16,
-                          ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'UI/UX Designer',
+                        style: TextStyle(
+                          fontSize: 11,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                Card(
-                  color: Color(0xffF6F6F9),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
-                    width: 80,
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          '203',
-                          style: TextStyle(
-                            color: Color(0xff5085E8),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                isUserFollowed == false
+                    ? Container(
+                        margin: EdgeInsets.only(left: 30, bottom: 30),
+                        child: RaisedButton(
+                          onPressed: () {
+                            setState(() {
+                              if (isUserFollowed) {
+                                isUserFollowed = false;
+                              } else {
+                                isUserFollowed = true;
+                              }
+                            });
+                          },
+                          color: Color(0xff3C5A99),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Follow',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
                           ),
                         ),
-                        SizedBox(height: 5),
-                        Text(
-                          'Posts',
-                          style: TextStyle(
-                            color: Color(0xff5085E8),
-                            fontWeight: FontWeight.w300,
-                            fontSize: 16,
-                          ),
+                      )
+                    : Container(
+                        height: 50,
+                        width: 50,
+                        margin: EdgeInsets.only(left: 60, bottom: 30),
+                        transform: Matrix4.translationValues(0, -30, 0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          color: Color(0xff5085E8),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
+                        child: Icon(
+                          Icons.chat,
+                          color: Colors.white,
+                        ),
+                      ),
               ],
             ),
-            SizedBox(height: 10),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: Card(
@@ -410,7 +331,7 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                           Row(
                             children: <Widget>[
                               Text(
-                                'Members',
+                                'Friends',
                                 style: TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.w700,
@@ -428,7 +349,8 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MembersScreen()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => FriendsScreen()));
                             },
                             child: Text(
                               'See all',
@@ -447,70 +369,78 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              margin:
-                                  EdgeInsets.only(right: index != 4 ? 13 : 0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Stack(
-                                    alignment: Alignment.bottomRight,
-                                    children: <Widget>[
-                                      Container(
-                                        height: 65,
-                                        width: 65,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          border: Border.all(
-                                              color: Color(0xffEFEFEF),
-                                              width: 2),
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          child: Image.asset(
-                                            friends[index].image,
-                                            height: 80,
-                                            width: 80,
-                                            fit: BoxFit.cover,
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        FriendsFollowScreen()));
+                              },
+                              child: Container(
+                                margin:
+                                    EdgeInsets.only(right: index != 4 ? 13 : 0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Stack(
+                                      alignment: Alignment.bottomRight,
+                                      children: <Widget>[
+                                        Container(
+                                          height: 65,
+                                          width: 65,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
+                                            border: Border.all(
+                                                color: Color(0xffEFEFEF),
+                                                width: 2),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
+                                            child: Image.asset(
+                                              friends[index].image,
+                                              height: 80,
+                                              width: 80,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
+                                        friends[index].isOnline
+                                            ? Container(
+                                                height: 10,
+                                                width: 10,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xff7ED321),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(10)),
+                                                ),
+                                              )
+                                            : Container(),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5),
+                                    AutoSizeText(
+                                      friends[index].name,
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: Color(0xff4A4A4A),
                                       ),
-                                      friends[index].isOnline
-                                          ? Container(
-                                              height: 10,
-                                              width: 10,
-                                              decoration: BoxDecoration(
-                                                color: Color(0xff7ED321),
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10)),
-                                              ),
-                                            )
-                                          : Container(),
-                                    ],
-                                  ),
-                                  SizedBox(height: 5),
-                                  AutoSizeText(
-                                    friends[index].name,
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                      color: Color(0xff4A4A4A),
+                                      maxLines: 1,
+                                      minFontSize: 5,
                                     ),
-                                    maxLines: 1,
-                                    minFontSize: 5,
-                                  ),
-                                  SizedBox(height: 5),
-                                  AutoSizeText(
-                                    friends[index].mutual,
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                      color: Color(0xff4A4A4A),
+                                    SizedBox(height: 5),
+                                    AutoSizeText(
+                                      friends[index].mutual,
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: Color(0xff4A4A4A),
+                                      ),
+                                      maxLines: 1,
+                                      minFontSize: 5,
                                     ),
-                                    maxLines: 1,
-                                    minFontSize: 5,
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             );
                           },
@@ -518,62 +448,6 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                       ),
                       SizedBox(height: 5),
                     ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              child: GestureDetector(
-                onTap: (){
-                  setState(() {
-                    if(isExpandCoursesMentorship){
-                      isExpandCoursesMentorship = false;
-                    }else{
-                      isExpandCoursesMentorship = true;
-                    }
-                  });
-                },
-                child: Card(
-                  color: Color(0xffF3F3F6),
-                  elevation: 10,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.school,
-                            ),
-                            SizedBox(width: 10),
-                            Text('Courses & Mentorship'),
-                          ],
-                        ),
-                        isExpandCoursesMentorship ? Container(
-                          margin: EdgeInsets.symmetric(horizontal: 15),
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(height: 20),
-                              Text(
-                                '1.Basics of Cryptocurrency',
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                '1.Basics of Cryptocurrency',
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                '1.Basics of Cryptocurrency',
-                              ),
-                              SizedBox(height: 10),
-                            ],
-                          ),
-                        ) : Container(),
-                      ],
-                    ),
                   ),
                 ),
               ),
@@ -1242,5 +1116,31 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
         ),
       ],
     );
+  }
+
+  _showActionSheet(context) {
+    return showCupertinoModalPopup<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoActionSheet(
+            actions: <Widget>[
+              CupertinoActionSheetAction(
+                isDestructiveAction: true,
+                child: Text('Report/Block'),
+                onPressed: () {},
+              ),
+              CupertinoActionSheetAction(
+                child: Text('Unfriend'),
+                onPressed: () {},
+              ),
+              CupertinoActionSheetAction(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 }

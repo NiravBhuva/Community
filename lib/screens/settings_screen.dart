@@ -1,5 +1,5 @@
 import 'package:community/custom/custom_nav_bar.dart';
-import 'package:community/screens/contact_info_screen.dart';
+import 'package:community/screens/profile1_screen.dart';
 import 'package:flutter/cupertino.dart' as prefix0;
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: Container(
         height: double.infinity,
         color: Colors.white,
-        child: _body(),
+        child: Scaffold(
+          body: _body(),
+        ),
       ),
     );
   }
@@ -73,7 +75,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         SizedBox(height: 15),
         ListTile(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ContactInfoScreen()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Profile1Screen()));
           },
           leading: CircleAvatar(
             radius: 29,
@@ -92,161 +94,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           trailing: Icon(Icons.navigate_next),
         ),
         Divider(),
-        ListTile(
-          onTap: () {},
-          leading: Container(
-            margin: EdgeInsets.only(left: 5),
-            child: Image.asset(
-              'assets/bell (1).png',
-              height: 25,
-              width: 25,
-              color: Color(0xff0088FF),
-            ),
-          ),
-          title: Text(
-            'Saved Messages',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          trailing: Icon(Icons.navigate_next),
-        ),
-        Row(
-          children: <Widget>[
-            Container(
-              height: 2,
-              width: 70,
-              color: Colors.white,
-            ),
-            Flexible(child: Divider()),
-          ],
-        ),
-        ListTile(
-          onTap: () {},
-          leading: Container(
-            margin: EdgeInsets.only(left: 5),
-            child: Image.asset(
-              'assets/bell (1).png',
-              height: 25,
-              width: 25,
-              color: Color(0xff0088FF),
-            ),
-          ),
-          title: Text(
-            'Recent Calls',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          trailing: Icon(Icons.navigate_next),
-        ),
-        Divider(),
-        SizedBox(height: 30),
-        Divider(),
-        ListTile(
-          onTap: () {},
-          leading: Container(
-            margin: EdgeInsets.only(left: 5),
-            child: Image.asset(
-              'assets/bell (1).png',
-              height: 25,
-              width: 25,
-              color: Color(0xff0088FF),
-            ),
-          ),
-          title: Text(
-            'Chats',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          trailing: Icon(Icons.navigate_next),
-        ),
-        Row(
-          children: <Widget>[
-            Container(
-              height: 2,
-              width: 70,
-              color: Colors.white,
-            ),
-            Flexible(child: Divider()),
-          ],
-        ),
-        ListTile(
-          onTap: () {},
-          leading: Container(
-            margin: EdgeInsets.only(left: 5),
-            child: Image.asset(
-              'assets/bell (1).png',
-              height: 25,
-              width: 25,
-              color: Color(0xff0088FF),
-            ),
-          ),
-          title: Text(
-            'Data and Storage',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          trailing: Icon(Icons.navigate_next),
-        ),
-        Row(
-          children: <Widget>[
-            Container(
-              height: 2,
-              width: 70,
-              color: Colors.white,
-            ),
-            Flexible(child: Divider()),
-          ],
-        ),
-        ListTile(
-          onTap: () {},
-          leading: Container(
-            margin: EdgeInsets.only(left: 5),
-            child: Image.asset(
-              'assets/bell (1).png',
-              height: 25,
-              width: 25,
-              color: Color(0xff0088FF),
-            ),
-          ),
-          title: Text(
-            'Language',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          trailing: Wrap(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 2),
-                child: Text(
-                  'English',
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
-                ),
-              ),
-              SizedBox(width: 15),
-              Icon(Icons.navigate_next),
-            ],
-          ),
-        ),
-        Row(
-          children: <Widget>[
-            Container(
-              height: 2,
-              width: 70,
-              color: Colors.white,
-            ),
-            Flexible(child: Divider()),
-          ],
-        ),
         ListTile(
           onTap: () {},
           leading: Container(
@@ -310,8 +157,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
         Divider(),
-        SizedBox(height: 30),
-        Divider(),
         ListTile(
           onTap: () {},
           leading: Container(
@@ -342,28 +187,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Flexible(child: Divider()),
           ],
         ),
-        ListTile(
-          onTap: () {},
-          leading: Container(
-            margin: EdgeInsets.only(left: 5),
-            child: Image.asset(
-              'assets/bell (1).png',
-              height: 25,
-              width: 25,
-              color: Color(0xff0088FF),
-            ),
-          ),
-          title: Text(
-            'Messenger FAQ',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          trailing: Icon(Icons.navigate_next),
-        ),
-        Divider(),
-        SizedBox(height: 30),
       ],
     );
   }

@@ -1,8 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:community/screens/forgot_password_screen.dart';
 import 'package:community/screens/home_screen.dart';
+import 'package:community/screens/signup1_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'complete_screen.dart';
 import 'feed_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -11,40 +14,40 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  FocusNode focusEmail = new FocusNode();
-  FocusNode focusPass = new FocusNode();
-  Color txtFieldEmailColor = Color(0xffF7F6FB);
-  Color txtFieldPasswordColor = Color(0xffF7F6FB);
+//  FocusNode focusEmail = new FocusNode();
+//  FocusNode focusPass = new FocusNode();
+//  Color txtFieldEmailColor = Color(0xffF7F6FB);
+//  Color txtFieldPasswordColor = Color(0xffF7F6FB);
+//
+//  @override
+//  void initState() {
+//    // TODO: implement initState
+//    focusEmail.addListener(_changeColor);
+//    focusPass.addListener(_changeColor);
+//    super.initState();
+//  }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    focusEmail.addListener(_changeColor);
-    focusPass.addListener(_changeColor);
-    super.initState();
-  }
-
-  _changeColor(){
-    if(focusEmail.hasFocus){
-      setState(() {
-        txtFieldEmailColor = Colors.white;
-      });
-    }else{
-      setState(() {
-        txtFieldEmailColor = Color(0xffF7F6FB);
-      });
-    }
-
-    if(focusPass.hasFocus){
-      setState(() {
-        txtFieldPasswordColor = Colors.white;
-      });
-    }else{
-      setState(() {
-        txtFieldPasswordColor = Color(0xffF7F6FB);
-      });
-    }
-  }
+//  _changeColor(){
+//    if(focusEmail.hasFocus){
+//      setState(() {
+//        txtFieldEmailColor = Colors.white;
+//      });
+//    }else{
+//      setState(() {
+//        txtFieldEmailColor = Color(0xffF7F6FB);
+//      });
+//    }
+//
+//    if(focusPass.hasFocus){
+//      setState(() {
+//        txtFieldPasswordColor = Colors.white;
+//      });
+//    }else{
+//      setState(() {
+//        txtFieldPasswordColor = Color(0xffF7F6FB);
+//      });
+//    }
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,12 +98,12 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: 45),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 35),
               decoration: BoxDecoration(
-                  color: txtFieldEmailColor,
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                color: Color(0xffF7F6FB),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              margin: EdgeInsets.symmetric(horizontal: 35),
               child: TextField(
-                focusNode: focusEmail,
                 style: TextStyle(color: Color(0xff939393), fontSize: 19),
                 decoration: InputDecoration(
                   hintText: 'Email',
@@ -110,21 +113,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     horizontal: 20,
                     vertical: 17,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide(color: Color(0xff62A8E5)),
-                  ),
                 ),
               ),
             ),
             SizedBox(height: 30),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 35),
               decoration: BoxDecoration(
-                  color: txtFieldPasswordColor,
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                color: Color(0xffF7F6FB),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              margin: EdgeInsets.symmetric(horizontal: 35),
               child: TextField(
-                focusNode: focusPass,
                 style: TextStyle(color: Color(0xff939393), fontSize: 19),
                 obscureText: true,
                 decoration: InputDecoration(
@@ -135,23 +134,40 @@ class _LoginScreenState extends State<LoginScreen> {
                     horizontal: 20,
                     vertical: 17,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide(color: Color(0xff62A8E5)),
-                  ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ForgotPasswordScreen()));
+                  },
+                  child: Text(
+                    'Forget Password?',
+                    style: TextStyle(
+                      color: Color(0xff094cac),
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: 200,
+                  width: 170,
                   height: 55,
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CompleteScreen()));
                     },
                     color: Color(0xff004FAC),
                     shape: RoundedRectangleBorder(
@@ -188,17 +204,73 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Icon(Icons.insert_photo, size: 35,),
+                Icon(
+                  Icons.insert_photo,
+                  size: 35,
+                ),
                 SizedBox(width: 25),
-                Icon(Icons.insert_photo, size: 35,),
+                Icon(
+                  Icons.insert_photo,
+                  size: 35,
+                ),
                 SizedBox(width: 25),
-                Icon(Icons.insert_photo, size: 35,),
+                Icon(
+                  Icons.insert_photo,
+                  size: 35,
+                ),
               ],
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: 200,
+                  height: 55,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => HomeScreen()));
+                    },
+                    color: Colors.black,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(7))),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.invert_colors,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            height: 20,
+                            child: AutoSizeText(
+                              'Sign in with Apple',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                              maxLines: 1,
+                              minFontSize: 5,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
             GestureDetector(
-              onTap: (){
-
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Signup1Screen()));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

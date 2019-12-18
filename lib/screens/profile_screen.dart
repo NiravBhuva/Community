@@ -1,13 +1,15 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:community/custom/custom_read_more_text.dart';
+import 'package:community/screens/friends_follow_screen.dart';
+import 'package:community/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_button/flutter_reactive_button.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'communities_screen.dart';
 import 'feed_screen.dart';
+import 'friends_screen.dart';
 import 'messages_screen.dart';
-import 'new_bottom_nav_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -170,7 +172,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ),
                       GestureDetector(
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>NewBottomNavScreen()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SettingsScreen()));
                         },
                         child: Image.asset(
                           'assets/be32af43b3e0b05f702e272d1968a3ed.png',
@@ -300,17 +302,22 @@ class _ProfileScreenState extends State<ProfileScreen>
                               ),
                             ],
                           ),
-                          Text(
-                            'See all',
-                            style: TextStyle(
-                                fontSize: 11, color: Color(0xff4A4A4A)),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FriendsScreen()));
+                            },
+                            child: Text(
+                              'See all',
+                              style: TextStyle(
+                                  fontSize: 11, color: Color(0xff4A4A4A)),
+                            ),
                           ),
                         ],
                       ),
                       SizedBox(height: 10),
                       Container(
                         height: 120,
-                        margin: EdgeInsets.only(top: 25),
+                        margin: EdgeInsets.only(top: 5),
                         child: ListView.builder(
                           itemCount: friends.length,
                           shrinkWrap: true,
@@ -318,7 +325,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: (){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CommunitiesScreen()));
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FriendsFollowScreen()));
                               },
                               child: Container(
                                 margin:

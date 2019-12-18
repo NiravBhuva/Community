@@ -1,4 +1,5 @@
 import 'package:community/screens/login_screen.dart';
+import 'package:community/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -12,7 +13,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         //canvasColor: Colors.transparent,
       ),
-      home: LoginScreen(),
+      routes: {
+        '/LoginScreen': (context) => LoginScreen(),
+      },
+      home: SplashScreen(),
     );
   }
 }

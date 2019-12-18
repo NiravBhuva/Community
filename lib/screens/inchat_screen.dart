@@ -130,10 +130,12 @@ class _InChatScreenState extends State<InChatScreen> {
 
   _bottomNavBar() {
     return Container(
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       color: Color(0xffF3F3F6),
       child: Container(
         margin: EdgeInsets.only(
-          bottom: 30,
+          bottom: 15,
+          top: 15,
           left: 20,
           right: 20,
         ),

@@ -1,46 +1,51 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:community/custom/custom_nav_bar.dart';
+import 'package:community/screens/communities_screen.dart';
+import 'package:community/screens/search_screen.dart';
 import 'package:flutter/cupertino.dart' as prefix0;
 import 'package:flutter/material.dart';
 
-import 'communities_screen.dart';
-
-class SearchScreen extends StatefulWidget {
+class MoreScreen extends StatefulWidget {
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  _MoreScreenState createState() => _MoreScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _MoreScreenState extends State<MoreScreen> {
   List<Community> communities = new List<Community>();
-  List<Community> people = new List<Community>();
-  List<String> posts = new List();
+  List<Community> joinedCommunities = new List<Community>();
+  List<Community> categories = new List<Community>();
+  List<Community> suggestions = new List<Community>();
 
   @override
   void initState() {
     // TODO: implement initState
     communities.add(
-        Community('assets/Rectangle Copy 12.png', 'Food guys', '400 Members'));
+        Community('assets/Rectangle Copy 12.png', 'Add Community', ''));
     communities.add(Community(
-        'assets/Rectangle Copy 12.png', 'Toni Robins', '400 Members'));
+        'assets/Rectangle Copy 12.png', 'Toni Robins', '4000 Members'));
     communities.add(
-        Community('assets/Rectangle Copy 12.png', 'Food guys', '400 Members'));
+        Community('assets/Rectangle Copy 12.png', 'Daily Playlist', '60 Members'));
 
-    people.add(Community(
+    joinedCommunities.add(
+        Community('assets/Rectangle Copy 12.png', 'Jay Z', 'Rapper'));
+    joinedCommunities.add(Community(
+        'assets/Rectangle Copy 12.png', 'Imagine Dragons', 'Band'));
+    joinedCommunities.add(
+        Community('assets/Rectangle Copy 12.png', 'Linkin Park', 'Rock band'));
+
+    categories.add(
+        Community('assets/Rectangle Copy 12.png', 'Music', ''));
+    categories.add(Community(
+        'assets/Rectangle Copy 12.png', '', ''));
+    categories.add(
+        Community('assets/Rectangle Copy 12.png', 'Marketting', ''));
+
+    suggestions.add(Community(
         'assets/Rectangle Copy 12.png', 'Jimmy John', '12 mutual friends'));
-    people.add(Community(
+    suggestions.add(Community(
         'assets/Rectangle Copy 12.png', 'Ashley Ren', '3 mutual friends'));
-    people.add(Community('assets/Rectangle Copy 12.png', 'Alex Lopez', ''));
-    people.add(Community('assets/Rectangle Copy 12.png', 'Maggie Murphy', ''));
-
-    posts = [
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
-    ];
+    suggestions.add(Community('assets/Rectangle Copy 12.png', 'Alex Lopez', ''));
+    suggestions.add(Community('assets/Rectangle Copy 12.png', 'Maggie Murphy', ''));
 
     super.initState();
   }
@@ -57,44 +62,56 @@ class _SearchScreenState extends State<SearchScreen> {
             SizedBox(height: 25),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <prefix0.Widget>[
-                  Text(
-                    'Communities',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xff4D495B),
-                    ),
-                  ),
-                  Text(
-                    'See all',
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 15),
-            _communities(),
-            SizedBox(height: 30),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                'People',
+                'Communities',
                 style: TextStyle(
                   fontSize: 16,
                   color: Color(0xff4D495B),
                 ),
               ),
             ),
+            SizedBox(height: 15),
+            _communities(communities),
             SizedBox(height: 30),
-            _people(),
-            SizedBox(height: 50),
-            _posts(),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                'Suggestion',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xff4D495B),
+                ),
+              ),
+            ),
+            SizedBox(height: 15),
+            _suggestions(),
+            SizedBox(height: 20),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                'Communities you Joined',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xff4D495B),
+                ),
+              ),
+            ),
+            SizedBox(height: 15),
+            _communities(joinedCommunities),
             SizedBox(height: 30),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                'Categories',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xff4D495B),
+                ),
+              ),
+            ),
+            SizedBox(height: 15),
+            _communities(categories),
+            SizedBox(height: 15),
           ],
         ),
       ),
@@ -141,7 +158,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  _communities() {
+  _communities(List<Community> data) {
     return Container(
       height: 130,
       margin: EdgeInsets.only(left: 15),
@@ -159,40 +176,41 @@ class _SearchScreenState extends State<SearchScreen> {
               width: 130,
               height: 130,
               child: Stack(
-                alignment: Alignment.bottomCenter,
                 children: <Widget>[
                   ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     child: ColorFiltered(
-                      colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.35), BlendMode.darken),
+                      colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken),
                       child: Image.asset(
-                        communities[index].image,
+                        data[index].image,
                         height: 130,
                         width: 130,
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                  Center(
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     child: Column(
-                      mainAxisAlignment: prefix0.MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <prefix0.Widget>[
                         SizedBox(height: 10),
                         AutoSizeText(
-                          communities[index].title,
+                          data[index].title,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: prefix0.FontWeight.w700,
+                            fontSize: 14,
+                            fontWeight: prefix0.FontWeight.w500,
                           ),
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.start,
                           maxLines: 2,
                           minFontSize: 11,
                         ),
                         AutoSizeText(
-                          communities[index].subTitle,
-                          style: TextStyle(color: Colors.white, fontSize: 11),
-                          textAlign: TextAlign.center,
+                          data[index].subTitle,
+                          style: TextStyle(color: Colors.grey.shade400, fontSize: 9),
+                          textAlign: TextAlign.start,
                           maxLines: 2,
                           minFontSize: 9,
                         ),
@@ -208,12 +226,12 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  _people() {
+  _suggestions() {
     return Container(
       height: 135,
       margin: EdgeInsets.only(left: 15),
       child: ListView.builder(
-        itemCount: people.length,
+        itemCount: suggestions.length,
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
@@ -228,7 +246,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     child: Image.asset(
-                      people[index].image,
+                      suggestions[index].image,
                       height: 80,
                       width: 80,
                       fit: BoxFit.cover,
@@ -239,7 +257,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     children: <prefix0.Widget>[
                       SizedBox(height: 8),
                       AutoSizeText(
-                        people[index].title,
+                        suggestions[index].title,
                         style: TextStyle(
                           color: Color(0xff4A4A4A),
                           fontSize: 16,
@@ -250,7 +268,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                       SizedBox(height: 5),
                       AutoSizeText(
-                        people[index].subTitle,
+                        suggestions[index].subTitle,
                         style: TextStyle(
                           color: Color(0xff4A4A4A),
                           fontSize: 11,
@@ -269,42 +287,4 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
-
-  _posts() {
-    return Container(
-      margin: EdgeInsets.only(left: 30, right: 30),
-      child: GridView.count(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        crossAxisCount: 2,
-        childAspectRatio: 0.75,
-        crossAxisSpacing: 20,
-        mainAxisSpacing: 20,
-        children: new List<Widget>.generate(
-          posts.length,
-              (index) {
-            return GestureDetector(
-              onTap: (){
-              },
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(7)),
-                child: Image.asset(
-                  posts[index],
-                  fit: BoxFit.cover,
-                ),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class Community {
-  String image;
-  String title;
-  String subTitle;
-
-  Community(this.image, this.title, this.subTitle);
 }
