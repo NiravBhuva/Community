@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:community/custom/custom_nav_bar.dart';
+
+//import 'package:community/custom/custom_nav_bar.dart';
 import 'package:flutter/cupertino.dart' as prefix0;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InChatScreen extends StatefulWidget {
@@ -19,11 +21,11 @@ class _InChatScreenState extends State<InChatScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    attachments.add(Attachment('', 'Photo'));
-    attachments.add(Attachment('', 'Video'));
-    attachments.add(Attachment('', 'Document'));
-    attachments.add(Attachment('', 'Location'));
-    attachments.add(Attachment('', 'Contact'));
+    attachments.add(Attachment('assets/image.png', 'Photo'));
+    attachments.add(Attachment('assets/film.png', 'Video'));
+    attachments.add(Attachment('assets/file.png', 'Document'));
+    attachments.add(Attachment('assets/map-pin.png', 'Location'));
+    attachments.add(Attachment('assets/user.png', 'Contact'));
     super.initState();
   }
 
@@ -49,78 +51,73 @@ class _InChatScreenState extends State<InChatScreen> {
 
   _topNavBar() {
     return CupertinoNavigationBar(
+      automaticallyImplyMiddle: false,
+      transitionBetweenRoutes: false,
+      automaticallyImplyLeading: false,
       leading: Container(
         width: 0,
       ),
       middle: Container(
-        margin: EdgeInsets.only(top: 20),
-        child: Column(
+        margin: EdgeInsets.only(right: 15),
+        child: Row(
+          mainAxisAlignment: prefix0.MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SizedBox(height: 60),
-            Container(
-              margin: EdgeInsets.only(right: 15),
-              child: Row(
-                mainAxisAlignment: prefix0.MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Image.asset(
-                          'assets/_Icons - Close Copy 3.png',
-                          height: 20,
-                          width: 20,
-                          color: Color(0xff004FAC),
-                        ),
-                      ),
-                      SizedBox(width: 15),
-                      CircleAvatar(
-                        radius: 20,
-                        child: ClipOval(
-                          child: Image.asset(
-                            widget.profilePic,
-                            height: 80,
-                            width: 80,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ],
+            Row(
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Image.asset(
+                    'assets/_Icons - Close Copy 3.png',
+                    height: 20,
+                    width: 20,
+                    color: Color(0xff004FAC),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        widget.name,
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff5D5D5D),
-                        ),
-                      ),
-                      SizedBox(height: 7),
-                      Text(
-                        'American actress',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Color(0xff5D5D5D),
-                        ),
-                      ),
-                    ],
+                ),
+                SizedBox(width: 15),
+                CircleAvatar(
+                  radius: 20,
+                  child: ClipOval(
+                    child: Image.asset(
+                      widget.profilePic,
+                      height: 80,
+                      width: 80,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(width: 50),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Icon(Icons.delete_outline),
-                      ),
-                    ],
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  widget.name,
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xff5D5D5D),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 3),
+                Text(
+                  'American actress',
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Color(0xff5D5D5D),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                SizedBox(width: 50),
+                GestureDetector(
+                  onTap: () {},
+                  child: Icon(Icons.delete_outline),
+                ),
+              ],
             ),
           ],
         ),
@@ -130,7 +127,8 @@ class _InChatScreenState extends State<InChatScreen> {
 
   _bottomNavBar() {
     return Container(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       color: Color(0xffF3F3F6),
       child: Container(
         margin: EdgeInsets.only(
@@ -240,9 +238,8 @@ class _InChatScreenState extends State<InChatScreen> {
                                 border: Border.all(
                                     color: Color(0xffEFEFEF), width: 2),
                               ),
-                              child: Icon(
-                                Icons.image,
-                                color: Color(0xff0088FF),
+                              child: Image.asset(
+                                attachments[index].image,
                               ),
                             ),
                             SizedBox(height: 10),
@@ -268,8 +265,7 @@ class _InChatScreenState extends State<InChatScreen> {
                     },
                     color: Color(0xffEFEFEF),
                     shape: RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(12))),
+                        borderRadius: BorderRadius.all(Radius.circular(12))),
                     child: Container(
                       height: 55,
                       alignment: Alignment.center,

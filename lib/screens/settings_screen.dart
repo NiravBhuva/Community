@@ -99,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           leading: Container(
             margin: EdgeInsets.only(left: 5),
             child: Image.asset(
-              'assets/bell (1).png',
+              'assets/globe.png',
               height: 25,
               width: 25,
               color: Color(0xff0088FF),
@@ -129,7 +129,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           leading: Container(
             margin: EdgeInsets.only(left: 5),
             child: Image.asset(
-              'assets/bell (1).png',
+              'assets/lock.png',
               height: 25,
               width: 25,
               color: Color(0xff0088FF),
@@ -162,7 +162,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           leading: Container(
             margin: EdgeInsets.only(left: 5),
             child: Image.asset(
-              'assets/bell (1).png',
+              'assets/info.png',
               height: 25,
               width: 25,
               color: Color(0xff0088FF),

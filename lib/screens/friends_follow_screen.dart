@@ -114,7 +114,7 @@ class _FriendsFollowScreenState extends State<FriendsFollowScreen>
         false));
 
     posts.add(Post(
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
+      'assets/15127.jpg',
       'Edward Kelly',
       '2 hours ago',
       '#relax, #travel',
@@ -126,7 +126,7 @@ class _FriendsFollowScreenState extends State<FriendsFollowScreen>
       messages,
     ));
     posts.add(Post(
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
+      'assets/OTSOUE0.jpg',
       'Howard Barton',
       '2 hours ago',
       '',
@@ -633,15 +633,15 @@ class _FriendsFollowScreenState extends State<FriendsFollowScreen>
                               children: <Widget>[
                                 posts[index].isLiked
                                     ? Image.asset(
-                                        btn,
-                                        height: 20,
-                                        width: 20,
-                                      )
+                                  btn,
+                                  height: 20,
+                                  width: 20,
+                                )
                                     : Image.asset(
-                                        'assets/_Icons - -1.png',
-                                        height: 20,
-                                        width: 20,
-                                      ),
+                                  'assets/_Icons - -1.png',
+                                  height: 20,
+                                  width: 20,
+                                ),
                                 SizedBox(width: 7),
                                 Text(
                                   posts[index].likes,
@@ -680,76 +680,12 @@ class _FriendsFollowScreenState extends State<FriendsFollowScreen>
                           ),
                         ],
                       ),
-                      Spacer(),
-                      Stack(
-                        children: <Widget>[
-                          Container(
-                            transform: Matrix4.translationValues(0, 0, 0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 2.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 18,
-                              backgroundColor: Colors.black,
-                              child: ClipOval(
-                                child: Image.asset(
-                                  'assets/Rectangle Copy 12.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            transform: Matrix4.translationValues(-17, 0, 0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 2.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 18,
-                              backgroundColor: Colors.black,
-                              child: ClipOval(
-                                child: Image.asset(
-                                  'assets/Rectangle Copy 12.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            transform: Matrix4.translationValues(-34, 0, 0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 2.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 18,
-                              backgroundColor: Colors.black,
-                              child: ClipOval(
-                                child: Image.asset(
-                                  'assets/Rectangle Copy 12.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      GestureDetector(
+                        onTap: (){},
+                        child: Icon(
+                          Icons.star_border,
+                          size: 25,
+                        ),
                       ),
                     ],
                   ),

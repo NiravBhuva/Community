@@ -1,9 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:community/custom/custom_nav_bar.dart';
 import 'package:community/custom/custom_read_more_text.dart';
-import 'package:community/screens/course_preview_screen.dart';
 import 'package:community/screens/messages_screen.dart';
+import 'package:community/screens/post_screen.dart';
 import 'package:community/screens/profile_screen.dart';
+import 'package:community/screens/search_screen.dart';
 import 'package:flutter/cupertino.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_button/flutter_reactive_button.dart';
@@ -29,7 +30,7 @@ class _FeedScreenState extends State<FeedScreen> {
       "Since the introduction of Virtual Game, it has been achieving great heights so far as its popularity and technological advancement are concerned. The history of video game is as interesting as a fairy tale...";
   String txt2 = "The Luxury Of Traveling With Yacht Charter Companies";
   bool showCommentView = false;
-  String btn = 'assets/_Icons - 8 Like.png';
+  String btn;
 
   List<Message> messages = [
     Message(
@@ -46,18 +47,30 @@ class _FeedScreenState extends State<FeedScreen> {
     ),
   ];
 
-  List<ReactiveIconDefinition> _like = <ReactiveIconDefinition>[
+  List<ReactiveIconDefinition> _likes = <ReactiveIconDefinition>[
     ReactiveIconDefinition(
-      assetIcon: 'assets/_Icons - 8 Like.png',
+      assetIcon: 'assets/like.gif',
       code: 'like',
     ),
     ReactiveIconDefinition(
-      assetIcon: 'assets/_Icons - -1.png',
+      assetIcon: 'assets/haha.gif',
       code: 'haha',
     ),
     ReactiveIconDefinition(
-      assetIcon: 'assets/happy.png',
+      assetIcon: 'assets/love.gif',
       code: 'love',
+    ),
+    ReactiveIconDefinition(
+      assetIcon: 'assets/sad.gif',
+      code: 'sad',
+    ),
+    ReactiveIconDefinition(
+      assetIcon: 'assets/wow.gif',
+      code: 'wow',
+    ),
+    ReactiveIconDefinition(
+      assetIcon: 'assets/angry.gif',
+      code: 'angry',
     ),
   ];
 
@@ -65,7 +78,7 @@ class _FeedScreenState extends State<FeedScreen> {
   void initState() {
     // TODO: implement initState
     posts.add(Post(
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
+      'assets/15127.jpg',
       'Edward Kelly',
       '2 hours ago',
       '#relax, #travel',
@@ -77,7 +90,7 @@ class _FeedScreenState extends State<FeedScreen> {
       messages,
     ));
     posts.add(Post(
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
+      'assets/OTSOUE0.jpg',
       'Howard Barton',
       '2 hours ago',
       '',
@@ -119,25 +132,48 @@ class _FeedScreenState extends State<FeedScreen> {
         width: 0,
       ),
       middle: Material(
+        color: Colors.transparent,
         child: Container(
           margin: EdgeInsets.only(top: 20),
           child: Column(
             children: <Widget>[
-              Text(
-                'Community',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xff004FAC),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  SizedBox(width: 30),
+                  Text(
+                    'Community',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xff004FAC),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SearchScreen()));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Image.asset(
+                        'assets/magnifying-glass (4).png',
+                        height: 20,
+                        width: 20,
+                        color: Color(0xff888C94),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 35),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileScreen()));
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ProfileScreen()));
                     },
                     child: Container(
                       margin: EdgeInsets.only(bottom: 6),
@@ -159,7 +195,8 @@ class _FeedScreenState extends State<FeedScreen> {
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: 10),
                       child: TextField(
-                        style: TextStyle(color: Color(0xff939393), fontSize: 17),
+                        style:
+                            TextStyle(color: Color(0xff939393), fontSize: 17),
                         decoration: InputDecoration(
                           hintText: 'write your status',
                           hintStyle: TextStyle(
@@ -200,7 +237,8 @@ class _FeedScreenState extends State<FeedScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CameraScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CameraScreen()));
                     },
                     child: Image.asset(
                       'assets/instagram.png',
@@ -266,9 +304,7 @@ class _FeedScreenState extends State<FeedScreen> {
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: GestureDetector(
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CoursePreviewScreen()));
-            },
+            onTap: () {},
             child: Card(
               color: Color(0xffF3F3F6),
               elevation: 5,
@@ -358,26 +394,33 @@ class _FeedScreenState extends State<FeedScreen> {
                         ? Column(
                             children: <Widget>[
                               SizedBox(height: 15),
-                              Image.asset(
-                                posts[index].image,
-                                height: MediaQuery.of(context).size.width - 65,
-                                width: MediaQuery.of(context).size.width - 65,
-                                fit: prefix0.BoxFit.cover,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => PostScreen()));
+                                },
+                                child: Image.asset(
+                                  posts[index].image,
+                                  height:
+                                      MediaQuery.of(context).size.width - 65,
+                                  width: MediaQuery.of(context).size.width - 65,
+                                  fit: prefix0.BoxFit.cover,
+                                ),
                               )
                             ],
                           )
                         : Container(),
                     SizedBox(height: 15),
                     Row(
-                      mainAxisAlignment: prefix0.MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Row(
                           children: <Widget>[
                             ReactiveButton(
-                              icons: _like,
+                              icons: _likes,
                               onSelected: (ReactiveIconDefinition button) {
                                 setState(() {
-                                  btn = button.assetIcon;
+                                  btn = button.code;
                                   posts[index].isLiked = true;
                                 });
                               },
@@ -396,27 +439,22 @@ class _FeedScreenState extends State<FeedScreen> {
                                 borderRadius: BorderRadius.circular(10.0),
                                 color: Colors.white,
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  posts[index].isLiked
-                                      ? Image.asset(
-                                          btn,
-                                          height: 20,
-                                          width: 20,
-                                        )
-                                      : Image.asset(
-                                          'assets/_Icons - -1.png',
-                                          height: 20,
-                                          width: 20,
-                                        ),
-                                  SizedBox(width: 7),
-                                  Text(
-                                    posts[index].likes,
-                                    style: TextStyle(color: Color(0xff004FAC)),
-                                  ),
-                                ],
-                              ),
+                              child: btn == null
+                                  ? Image.asset(
+                                      'assets/_Icons - -1.png',
+                                      width: 20.0,
+                                      height: 20.0,
+                                    )
+                                  : Image.asset(
+                                      'assets/$btn.png',
+                                      width: 20.0,
+                                      height: 20.0,
+                                    ),
+                            ),
+                            SizedBox(width: 7),
+                            Text(
+                              posts[index].likes,
+                              style: TextStyle(color: Color(0xff004FAC)),
                             ),
                             SizedBox(width: 25),
                             GestureDetector(
@@ -448,76 +486,12 @@ class _FeedScreenState extends State<FeedScreen> {
                             ),
                           ],
                         ),
-                        Spacer(),
-                        Stack(
-                          children: <Widget>[
-                            Container(
-                              transform: Matrix4.translationValues(0, 0, 0),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  width: 2.0,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              child: CircleAvatar(
-                                radius: 18,
-                                backgroundColor: Colors.black,
-                                child: ClipOval(
-                                  child: Image.asset(
-                                    'assets/Rectangle Copy 12.png',
-                                    height: 50,
-                                    width: 50,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              transform: Matrix4.translationValues(-17, 0, 0),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  width: 2.0,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              child: CircleAvatar(
-                                radius: 18,
-                                backgroundColor: Colors.black,
-                                child: ClipOval(
-                                  child: Image.asset(
-                                    'assets/Rectangle Copy 12.png',
-                                    height: 50,
-                                    width: 50,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              transform: Matrix4.translationValues(-34, 0, 0),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  width: 2.0,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              child: CircleAvatar(
-                                radius: 18,
-                                backgroundColor: Colors.black,
-                                child: ClipOval(
-                                  child: Image.asset(
-                                    'assets/Rectangle Copy 12.png',
-                                    height: 50,
-                                    width: 50,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                        GestureDetector(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.star_border,
+                            size: 25,
+                          ),
                         ),
                       ],
                     ),
@@ -620,7 +594,7 @@ class _FeedScreenState extends State<FeedScreen> {
                   mainAxisSize: prefix0.MainAxisSize.min,
                   children: <Widget>[
                     GestureDetector(
-                      onTap: (){},
+                      onTap: () {},
                       child: Image.asset(
                         'assets/paperclip.png',
                         height: 17,
@@ -629,7 +603,7 @@ class _FeedScreenState extends State<FeedScreen> {
                     ),
                     SizedBox(width: 5),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: () {},
                       child: Image.asset(
                         'assets/mic.png',
                         height: 17,
@@ -638,7 +612,7 @@ class _FeedScreenState extends State<FeedScreen> {
                     ),
                     SizedBox(width: 10),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: () {},
                       child: Image.asset(
                         'assets/img_nxt.png',
                         height: 20,

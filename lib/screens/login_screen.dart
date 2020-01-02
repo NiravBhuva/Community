@@ -14,40 +14,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-//  FocusNode focusEmail = new FocusNode();
-//  FocusNode focusPass = new FocusNode();
-//  Color txtFieldEmailColor = Color(0xffF7F6FB);
-//  Color txtFieldPasswordColor = Color(0xffF7F6FB);
-//
-//  @override
-//  void initState() {
-//    // TODO: implement initState
-//    focusEmail.addListener(_changeColor);
-//    focusPass.addListener(_changeColor);
-//    super.initState();
-//  }
-
-//  _changeColor(){
-//    if(focusEmail.hasFocus){
-//      setState(() {
-//        txtFieldEmailColor = Colors.white;
-//      });
-//    }else{
-//      setState(() {
-//        txtFieldEmailColor = Color(0xffF7F6FB);
-//      });
-//    }
-//
-//    if(focusPass.hasFocus){
-//      setState(() {
-//        txtFieldPasswordColor = Colors.white;
-//      });
-//    }else{
-//      setState(() {
-//        txtFieldPasswordColor = Color(0xffF7F6FB);
-//      });
-//    }
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: RaisedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => CompleteScreen()));
+                          builder: (context) => HomeScreen()));
                     },
                     color: Color(0xff004FAC),
                     shape: RoundedRectangleBorder(
@@ -204,19 +170,22 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Icon(
-                  Icons.insert_photo,
-                  size: 35,
+                Image.asset(
+                  'assets/facebook-logo.png',
+                  height: 25,
+                  width: 25,
                 ),
                 SizedBox(width: 25),
-                Icon(
-                  Icons.insert_photo,
-                  size: 35,
+                Image.asset(
+                  'assets/Icon awesome-instagram.png',
+                  height: 25,
+                  width: 25,
                 ),
                 SizedBox(width: 25),
-                Icon(
-                  Icons.insert_photo,
-                  size: 35,
+                Image.asset(
+                  'assets/Icon awesome-twitter.png',
+                  height: 25,
+                  width: 25,
                 ),
               ],
             ),
@@ -240,15 +209,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Icon(
-                            Icons.invert_colors,
-                            color: Colors.white,
+                          Image.asset(
+                            'assets/Icon awesome-apple.png',
+                            height: 30,
+                            width: 30,
                           ),
                           SizedBox(
                             width: 10,
                           ),
                           Container(
                             height: 20,
+                            margin: EdgeInsets.only(top: 5),
                             child: AutoSizeText(
                               'Sign in with Apple',
                               style: TextStyle(

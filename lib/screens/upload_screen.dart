@@ -49,8 +49,7 @@ class _UploadScreenState extends State<UploadScreen> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => PostScreen()));
+
                       },
                       child: Icon(
                         Icons.add,

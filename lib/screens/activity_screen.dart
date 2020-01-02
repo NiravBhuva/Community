@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:community/custom/custom_nav_bar.dart';
+//import 'package:community/custom/custom_nav_bar.dart';
 import 'package:flutter/cupertino.dart' as prefix0;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ActivityScreen extends StatefulWidget {
@@ -77,14 +78,14 @@ class _ActivityScreenState extends State<ActivityScreen> {
         width: 0,
       ),
       middle: Container(
-        margin: EdgeInsets.only(top: 20),
+        //margin: EdgeInsets.only(top: 20),
         child: Column(
           children: <Widget>[
-            SizedBox(height: 60),
+            //SizedBox(height: 60),
             Container(
               margin: EdgeInsets.only(right: 15),
               child: Row(
-                mainAxisAlignment: prefix0.MainAxisAlignment.center,
+                mainAxisAlignment: prefix0.MainAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     'Activity',

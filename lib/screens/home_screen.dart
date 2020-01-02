@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentTab = 0;
   List<Widget> screens = [
     FeedScreen(),
-    SearchScreen(),
+    //SearchScreen(),
     MessagesScreen(),
     ActivityScreen(),
     MoreScreen(),
@@ -52,14 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text('NEWS'),
           ),
         ),
-        BottomNavigationBarItem(
-          activeIcon: _bottomNavIconActive('assets/magnifying-glass (4).png'),
-          icon: _bottomNavIcon('assets/magnifying-glass (4).png'),
-          title: Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Text('SEARCH'),
-          ),
-        ),
+//        BottomNavigationBarItem(
+//          activeIcon: _bottomNavIconActive('assets/magnifying-glass (4).png'),
+//          icon: _bottomNavIcon('assets/magnifying-glass (4).png'),
+//          title: Padding(
+//            padding: const EdgeInsets.only(top: 8),
+//            child: Text('SEARCH'),
+//          ),
+//        ),
         BottomNavigationBarItem(
           activeIcon: Stack(
             children: <Widget>[

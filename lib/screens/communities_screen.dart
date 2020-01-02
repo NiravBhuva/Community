@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_reactive_button/flutter_reactive_button.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import 'course_preview_screen.dart';
 import 'feed_screen.dart';
 import 'messages_screen.dart';
 
@@ -112,7 +113,7 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
         false));
 
     posts.add(Post(
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
+      'assets/15127.jpg',
       'Edward Kelly',
       '2 hours ago',
       '#relax, #travel',
@@ -124,7 +125,7 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
       messages,
     ));
     posts.add(Post(
-      'assets/35889141_1990240171010349_8210575566856781824_o (1).png',
+      'assets/OTSOUE0.jpg',
       'Howard Barton',
       '2 hours ago',
       '',
@@ -157,33 +158,16 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 50, left: 20, right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Image.asset(
-                          'assets/_Icons - Close Copy 3.png',
-                          color: Colors.white,
-                          height: 25,
-                          width: 25,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SettingsScreen()));
-                        },
-                        child: Image.asset(
-                          'assets/be32af43b3e0b05f702e272d1968a3ed.png',
-                          color: Colors.white,
-                          height: 25,
-                          width: 25,
-                        ),
-                      ),
-                    ],
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Image.asset(
+                      'assets/_Icons - Close Copy 3.png',
+                      color: Colors.white,
+                      height: 25,
+                      width: 25,
+                    ),
                   ),
                 ),
               ],
@@ -557,16 +541,34 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                           child: Column(
                             children: <Widget>[
                               SizedBox(height: 20),
-                              Text(
-                                '1.Basics of Cryptocurrency',
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => CoursePreviewScreen()));
+                                },
+                                child: Text(
+                                  '1.Basics of Cryptocurrency',
+                                ),
                               ),
                               SizedBox(height: 10),
-                              Text(
-                                '1.Basics of Cryptocurrency',
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => CoursePreviewScreen()));
+                                },
+                                child: Text(
+                                  '1.Basics of Cryptocurrency',
+                                ),
                               ),
                               SizedBox(height: 10),
-                              Text(
-                                '1.Basics of Cryptocurrency',
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => CoursePreviewScreen()));
+                                },
+                                child: Text(
+                                  '1.Basics of Cryptocurrency',
+                                ),
                               ),
                               SizedBox(height: 10),
                             ],
@@ -759,15 +761,15 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                               children: <Widget>[
                                 posts[index].isLiked
                                     ? Image.asset(
-                                        btn,
-                                        height: 20,
-                                        width: 20,
-                                      )
+                                  btn,
+                                  height: 20,
+                                  width: 20,
+                                )
                                     : Image.asset(
-                                        'assets/_Icons - -1.png',
-                                        height: 20,
-                                        width: 20,
-                                      ),
+                                  'assets/_Icons - -1.png',
+                                  height: 20,
+                                  width: 20,
+                                ),
                                 SizedBox(width: 7),
                                 Text(
                                   posts[index].likes,
@@ -806,76 +808,12 @@ class _CommunitiesScreenState extends State<CommunitiesScreen>
                           ),
                         ],
                       ),
-                      Spacer(),
-                      Stack(
-                        children: <Widget>[
-                          Container(
-                            transform: Matrix4.translationValues(0, 0, 0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 2.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 18,
-                              backgroundColor: Colors.black,
-                              child: ClipOval(
-                                child: Image.asset(
-                                  'assets/Rectangle Copy 12.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            transform: Matrix4.translationValues(-17, 0, 0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 2.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 18,
-                              backgroundColor: Colors.black,
-                              child: ClipOval(
-                                child: Image.asset(
-                                  'assets/Rectangle Copy 12.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            transform: Matrix4.translationValues(-34, 0, 0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 2.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 18,
-                              backgroundColor: Colors.black,
-                              child: ClipOval(
-                                child: Image.asset(
-                                  'assets/Rectangle Copy 12.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      GestureDetector(
+                        onTap: (){},
+                        child: Icon(
+                          Icons.star_border,
+                          size: 25,
+                        ),
                       ),
                     ],
                   ),
