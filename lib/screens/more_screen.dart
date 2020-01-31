@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:community/custom/custom_read_more_text.dart';
 
@@ -1045,5 +1048,13 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
           );
         });
+  }
+
+  _convertToBase64(){
+    File image = File('assets/image.png');
+
+    String base64Image = base64Encode(image.readAsBytesSync());
+
+    print(base64Image);
   }
 }
